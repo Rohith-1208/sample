@@ -3,19 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Developer Profile Card</title>
+  <title>Rohith | Software Developer Profile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #090d16;
+      --bg: #070a12;
       --card-bg: rgba(255, 255, 255, 0.04);
       --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(99, 102, 241, 0.45);
       --accent: #6366f1;
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
       --accent-glow: rgba(99, 102, 241, 0.35);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
+      --tag-bg: rgba(255, 255, 255, 0.06);
+      --tag-border: rgba(255, 255, 255, 0.1);
     }
 
     * {
@@ -29,7 +33,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, var(--bg) 75%);
+      background: radial-gradient(circle at 50% 15%, #1e1b4b 0%, var(--bg) 80%);
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--text-main);
       padding: 24px;
@@ -37,70 +41,136 @@
 
     .card {
       width: 100%;
-      max-width: 380px;
+      max-width: 420px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 32px 24px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      border-radius: 28px;
+      padding: 36px 28px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.7);
       text-align: center;
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent-gradient);
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-5px);
+      border-color: var(--card-hover-border);
+      box-shadow: 0 30px 60px -15px rgba(99, 102, 241, 0.2);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: #34d399;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
     .avatar-wrapper {
       position: relative;
-      width: 96px;
-      height: 96px;
-      margin: 0 auto 18px;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
     }
 
     .avatar {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: linear-gradient(135deg, #6366f1, #ec4899);
+      background: var(--accent-gradient);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 36px;
-      font-weight: 700;
-      box-shadow: 0 0 25px var(--accent-glow);
+      font-size: 40px;
+      font-weight: 800;
+      color: #ffffff;
+      box-shadow: 0 0 30px var(--accent-glow);
+      user-select: none;
     }
 
-    .status-badge {
-      position: absolute;
-      bottom: 2px;
-      right: 4px;
-      width: 16px;
-      height: 16px;
-      background: #10b981;
-      border: 3px solid #0f172a;
-      border-radius: 50%;
-    }
-
-    h2 {
-      font-size: 22px;
-      font-weight: 700;
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
       letter-spacing: -0.02em;
     }
 
     .handle {
-      color: var(--text-muted);
+      color: #a5b4fc;
       font-size: 14px;
+      font-weight: 600;
       margin-top: 4px;
+      text-decoration: none;
+      display: inline-block;
+      transition: color 0.2s;
+    }
+
+    .handle:hover {
+      color: #ffffff;
     }
 
     .bio {
       margin-top: 14px;
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.65;
       color: #cbd5e1;
+    }
+
+    .skills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .skill-tag {
+      padding: 5px 12px;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #e2e8f0;
+      transition: all 0.2s ease;
+    }
+
+    .skill-tag:hover {
+      border-color: #818cf8;
+      background: rgba(99, 102, 241, 0.15);
+      color: #ffffff;
     }
 
     .stats {
@@ -113,70 +183,205 @@
     }
 
     .stat-item h3 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
+      color: #ffffff;
     }
 
     .stat-item span {
       font-size: 12px;
       color: var(--text-muted);
+      margin-top: 2px;
+      display: block;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .social-btn:hover {
+      color: #ffffff;
+      background: rgba(99, 102, 241, 0.2);
+      border-color: #6366f1;
+      transform: translateY(-2px);
+    }
+
+    .social-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
     }
 
     .btn-action {
-      width: 100%;
-      padding: 12px;
+      flex: 1;
+      padding: 13px 18px;
       border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 14px;
+      background: var(--accent-gradient);
       color: #ffffff;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
       cursor: pointer;
-      box-shadow: 0 8px 20px -4px var(--accent-glow);
-      transition: opacity 0.2s ease, transform 0.1s ease;
+      box-shadow: 0 10px 25px -5px var(--accent-glow);
+      transition: transform 0.15s ease, opacity 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
     }
 
     .btn-action:hover {
-      opacity: 0.92;
+      opacity: 0.94;
       transform: scale(0.99);
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 13px 18px;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <div class="avatar-wrapper">
-      <div class="avatar">⚡</div>
-      <div class="status-badge" title="Online"></div>
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      <span>Available for projects</span>
     </div>
-    <h2>Alex Rivera</h2>
-    <div class="handle">@alexrivera.dev</div>
-    <p class="bio">Full-Stack Engineer building modern web apps, high-performance UI systems, and creative tech.</p>
+
+    <div class="avatar-wrapper">
+      <div class="avatar">R</div>
+    </div>
+
+    <h1>Rohith</h1>
+    <a href="https://github.com/Rohith-1208" target="_blank" rel="noopener noreferrer" class="handle">@Rohith-1208</a>
+    
+    <p class="bio">
+      Software Developer specializing in modern web applications, interactive user experiences, and scalable software solutions.
+    </p>
+
+    <div class="skills-wrapper">
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">HTML5 / CSS3</span>
+      <span class="skill-tag">React</span>
+      <span class="skill-tag">Node.js</span>
+      <span class="skill-tag">Git</span>
+    </div>
 
     <div class="stats">
       <div class="stat-item">
-        <h3 id="followers-count">12.4k</h3>
-        <span>Followers</span>
-      </div>
-      <div class="stat-item">
-        <h3>84</h3>
+        <h3>15+</h3>
         <span>Projects</span>
       </div>
       <div class="stat-item">
-        <h3>99.9%</h3>
-        <span>Uptime</span>
+        <h3>100%</h3>
+        <span>Commit Rate</span>
+      </div>
+      <div class="stat-item">
+        <h3>24/7</h3>
+        <span>Creativity</span>
       </div>
     </div>
 
-    <button class="btn-action" id="connect-btn">Connect With Me</button>
+    <!-- Social Links with SVGs -->
+    <div class="social-links">
+      <!-- GitHub -->
+      <a href="https://github.com/Rohith-1208" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn">
+        <svg viewBox="0 0 24 24">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+      </a>
+
+      <!-- Twitter / X -->
+      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="Twitter / X">
+        <svg viewBox="0 0 24 24">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:hello@example.com" id="email-link" class="social-btn" title="Email Me">
+        <svg viewBox="0 0 24 24">
+          <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l9.027 7.315c.277.225.626.337.973.337.348 0 .697-.112.974-.337l9.026-7.315v11.817h-20z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="actions">
+      <button class="btn-action" id="contact-btn">
+        <span>Get in Touch</span>
+        <span>→</span>
+      </button>
+      <button class="btn-secondary" id="copy-btn">Copy Email</button>
+    </div>
   </div>
 
   <script>
-    const btn = document.getElementById('connect-btn');
-    btn.addEventListener('click', () => {
-      btn.innerText = 'Request Sent ✓';
-      btn.style.background = '#10b981';
-      btn.disabled = true;
+    const contactBtn = document.getElementById('contact-btn');
+    const copyBtn = document.getElementById('copy-btn');
+    const myEmail = "rohith@example.com"; // customize with your real email
+
+    contactBtn.addEventListener('click', () => {
+      window.location.href = `mailto:${myEmail}?subject=Hello Rohith`;
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(myEmail).then(() => {
+        const originalText = copyBtn.innerText;
+        copyBtn.innerText = "Copied! ✓";
+        copyBtn.style.color = "#34d399";
+        copyBtn.style.borderColor = "#10b981";
+
+        setTimeout(() => {
+          copyBtn.innerText = originalText;
+          copyBtn.style.color = "";
+          copyBtn.style.borderColor = "";
+        }, 2200);
+      });
     });
   </script>
 </body>
